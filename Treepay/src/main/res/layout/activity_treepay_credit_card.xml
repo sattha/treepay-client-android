@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:sl="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swipeRefreshLayout"
     android:layout_width="match_parent"
@@ -18,28 +19,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#009fe8"
-            app:scale_base_height="144"
-            app:scale_base_width="1080">
+            sl:scale_base_height="144"
+            sl:scale_base_width="1080">
 
-            <androidx.legacy.widget.Space
+            <View
                 android:id="@+id/backView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:scale_height="144"
-                app:scale_left="22"
-                app:scale_top="0"
-                app:scale_width="144" />
+                sl:scale_height="144"
+                sl:scale_left="22"
+                sl:scale_top="0"
+                sl:scale_width="144"
+                tools:ignore="MissingPrefix" />
 
-            <androidx.appcompat.widget.AppCompatImageView
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/btn_back_nor"
-                app:scale_height="50"
-                app:scale_left="70"
-                app:scale_top="47"
-                app:scale_width="48" />
+                sl:scale_height="50"
+                sl:scale_left="70"
+                sl:scale_top="47"
+                sl:scale_width="48"
+                tools:ignore="MissingPrefix" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -47,11 +50,12 @@
                 android:text="@string/check_out"
                 android:textColor="#ffffff"
                 android:textStyle="bold"
-                app:scale_height="144"
-                app:scale_left="0"
-                app:scale_textsize="60"
-                app:scale_top="0"
-                app:scale_width="1080" />
+                sl:scale_height="144"
+                sl:scale_left="0"
+                sl:scale_textsize="60"
+                sl:scale_top="0"
+                sl:scale_width="1080"
+                tools:ignore="MissingPrefix" />
         </com.ssomai.android.scalablelayout.ScalableLayout>
 
         <ScrollView
@@ -70,17 +74,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#ebebeb"
-                    app:scale_base_height="50"
-                    app:scale_base_width="1080"></com.ssomai.android.scalablelayout.ScalableLayout>
+                    sl:scale_base_height="50"
+                    sl:scale_base_width="1080"></com.ssomai.android.scalablelayout.ScalableLayout>
 
                 <com.ssomai.android.scalablelayout.ScalableLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#ebebeb"
-                    app:scale_base_height="60"
-                    app:scale_base_width="1080">
+                    sl:scale_base_height="60"
+                    sl:scale_base_width="1080">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="left|center"
@@ -88,13 +92,14 @@
                         android:singleLine="true"
                         android:text="@string/product_name"
                         android:textColor="#222222"
-                        app:scale_height="60"
-                        app:scale_left="70"
-                        app:scale_textsize="50"
-                        app:scale_top="0"
-                        app:scale_width="1080" />
+                        sl:scale_height="60"
+                        sl:scale_left="70"
+                        sl:scale_textsize="50"
+                        sl:scale_top="0"
+                        sl:scale_width="1080"
+                        tools:ignore="MissingPrefix" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <TextView
                         android:id="@+id/productNameTextView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -102,11 +107,12 @@
                         android:lineSpacingExtra="10sp"
                         android:singleLine="true"
                         android:textColor="#444444"
-                        app:scale_height="60"
-                        app:scale_left="535"
-                        app:scale_textsize="50"
-                        app:scale_top="0"
-                        app:scale_width="475"
+                        sl:scale_height="60"
+                        sl:scale_left="535"
+                        sl:scale_textsize="50"
+                        sl:scale_top="0"
+                        sl:scale_width="475"
+                        tools:ignore="MissingPrefix"
                         tools:text="New Balance 900v4" />
                 </com.ssomai.android.scalablelayout.ScalableLayout>
 
@@ -114,17 +120,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#ebebeb"
-                    app:scale_base_height="30"
-                    app:scale_base_width="1080" />
+                    sl:scale_base_height="30"
+                    sl:scale_base_width="1080"></com.ssomai.android.scalablelayout.ScalableLayout>
 
                 <com.ssomai.android.scalablelayout.ScalableLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#ebebeb"
-                    app:scale_base_height="60"
-                    app:scale_base_width="1080">
+                    sl:scale_base_height="60"
+                    sl:scale_base_width="1080">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="left|center"
@@ -132,13 +138,14 @@
                         android:singleLine="true"
                         android:text="@string/total_amount"
                         android:textColor="#222222"
-                        app:scale_height="60"
-                        app:scale_left="70"
-                        app:scale_textsize="50"
-                        app:scale_top="0"
-                        app:scale_width="1080" />
+                        sl:scale_height="60"
+                        sl:scale_left="70"
+                        sl:scale_textsize="50"
+                        sl:scale_top="0"
+                        sl:scale_width="1080"
+                        tools:ignore="MissingPrefix" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <TextView
                         android:id="@+id/totalAmountTextView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -147,11 +154,12 @@
                         android:singleLine="true"
                         android:textColor="#fe5d01"
                         android:textStyle="bold"
-                        app:scale_height="60"
-                        app:scale_left="535"
-                        app:scale_textsize="50"
-                        app:scale_top="0"
-                        app:scale_width="475"
+                        sl:scale_height="60"
+                        sl:scale_left="535"
+                        sl:scale_textsize="50"
+                        sl:scale_top="0"
+                        sl:scale_width="475"
+                        tools:ignore="MissingPrefix"
                         tools:text="9800.99 THB" />
                 </com.ssomai.android.scalablelayout.ScalableLayout>
 
@@ -159,29 +167,29 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#ebebeb"
-                    app:scale_base_height="50"
-                    app:scale_base_width="1080" />
+                    sl:scale_base_height="50"
+                    sl:scale_base_width="1080"></com.ssomai.android.scalablelayout.ScalableLayout>
 
                 <com.ssomai.android.scalablelayout.ScalableLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:scale_base_height="60"
-                    app:scale_base_width="1080" />
+                    sl:scale_base_height="60"
+                    sl:scale_base_width="1080"></com.ssomai.android.scalablelayout.ScalableLayout>
 
                 <com.ssomai.android.scalablelayout.ScalableLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:scale_base_height="150"
-                    app:scale_base_width="1080">
+                    sl:scale_base_height="150"
+                    sl:scale_base_width="1080">
 
-                    <com.google.android.material.textfield.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
-                        app:scale_height="150"
-                        app:scale_left="70"
-                        app:scale_top="0"
-                        app:scale_width="940">
+                        sl:scale_height="150"
+                        sl:scale_left="70"
+                        sl:scale_top="0"
+                        sl:scale_width="940">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/cardNumberEditText"
@@ -199,16 +207,17 @@
                             android:textSize="20sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <androidx.appcompat.widget.LinearLayoutCompat
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#00000000"
                         android:gravity="right"
                         android:orientation="horizontal"
-                        app:scale_height="90"
-                        app:scale_left="872"
-                        app:scale_top="44"
-                        app:scale_width="138">
+                        sl:scale_height="90"
+                        sl:scale_left="872"
+                        sl:scale_top="44"
+                        sl:scale_width="138"
+                        tools:ignore="MissingPrefix">
 
                         <ImageView
                             android:id="@+id/cardCompanyImageView"
@@ -216,30 +225,29 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:src="@drawable/card_nor" />
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
+                    </LinearLayout>
                 </com.ssomai.android.scalablelayout.ScalableLayout>
 
                 <com.ssomai.android.scalablelayout.ScalableLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:scale_base_height="40"
-                    app:scale_base_width="1080" />
+                    sl:scale_base_height="40"
+                    sl:scale_base_width="1080"></com.ssomai.android.scalablelayout.ScalableLayout>
 
                 <com.ssomai.android.scalablelayout.ScalableLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:scale_base_height="150"
-                    app:scale_base_width="1080">
+                    sl:scale_base_height="150"
+                    sl:scale_base_width="1080">
 
-                    <com.google.android.material.textfield.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
-                        app:scale_height="150"
-                        app:scale_left="70"
-                        app:scale_top="0"
-                        app:scale_width="940">
+                        sl:scale_height="150"
+                        sl:scale_left="70"
+                        sl:scale_top="0"
+                        sl:scale_width="940">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/expirationEditText"
@@ -261,23 +269,23 @@
                 <com.ssomai.android.scalablelayout.ScalableLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:scale_base_height="40"
-                    app:scale_base_width="1080" />
+                    sl:scale_base_height="40"
+                    sl:scale_base_width="1080"></com.ssomai.android.scalablelayout.ScalableLayout>
 
                 <com.ssomai.android.scalablelayout.ScalableLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:scale_base_height="150"
-                    app:scale_base_width="1080">
+                    sl:scale_base_height="150"
+                    sl:scale_base_width="1080">
 
-                    <com.google.android.material.textfield.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
-                        app:scale_height="150"
-                        app:scale_left="70"
-                        app:scale_top="0"
-                        app:scale_width="940">
+                        sl:scale_height="150"
+                        sl:scale_left="70"
+                        sl:scale_top="0"
+                        sl:scale_width="940">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/cvvEditText"
@@ -294,29 +302,28 @@
                             android:textCursorDrawable="@null"
                             android:textSize="20sp" />
                     </com.google.android.material.textfield.TextInputLayout>
-
                 </com.ssomai.android.scalablelayout.ScalableLayout>
 
                 <com.ssomai.android.scalablelayout.ScalableLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:scale_base_height="40"
-                    app:scale_base_width="1080" />
+                    sl:scale_base_height="40"
+                    sl:scale_base_width="1080"></com.ssomai.android.scalablelayout.ScalableLayout>
 
                 <com.ssomai.android.scalablelayout.ScalableLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:scale_base_height="150"
-                    app:scale_base_width="1080">
+                    sl:scale_base_height="150"
+                    sl:scale_base_width="1080">
 
-                    <com.google.android.material.textfield.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
-                        app:scale_height="150"
-                        app:scale_left="70"
-                        app:scale_top="0"
-                        app:scale_width="940">
+                        sl:scale_height="150"
+                        sl:scale_left="70"
+                        sl:scale_top="0"
+                        sl:scale_width="940">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/firstNameEditText"
@@ -334,29 +341,28 @@
                             android:textCursorDrawable="@null"
                             android:textSize="20sp" />
                     </com.google.android.material.textfield.TextInputLayout>
-
                 </com.ssomai.android.scalablelayout.ScalableLayout>
 
                 <com.ssomai.android.scalablelayout.ScalableLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:scale_base_height="40"
-                    app:scale_base_width="1080" />
+                    sl:scale_base_height="40"
+                    sl:scale_base_width="1080"></com.ssomai.android.scalablelayout.ScalableLayout>
 
                 <com.ssomai.android.scalablelayout.ScalableLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:scale_base_height="150"
-                    app:scale_base_width="1080">
+                    sl:scale_base_height="150"
+                    sl:scale_base_width="1080">
 
-                    <com.google.android.material.textfield.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
-                        app:scale_height="150"
-                        app:scale_left="70"
-                        app:scale_top="0"
-                        app:scale_width="940">
+                        sl:scale_height="150"
+                        sl:scale_left="70"
+                        sl:scale_top="0"
+                        sl:scale_width="940">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/lastNameEditText"
@@ -374,35 +380,35 @@
                             android:textCursorDrawable="@null"
                             android:textSize="20sp" />
                     </com.google.android.material.textfield.TextInputLayout>
-
                 </com.ssomai.android.scalablelayout.ScalableLayout>
 
                 <com.ssomai.android.scalablelayout.ScalableLayout
                     android:id="@+id/saveCardInfoScalableLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:scale_base_height="60"
-                    app:scale_base_width="1080" />
+                    sl:scale_base_height="60"
+                    sl:scale_base_width="1080"></com.ssomai.android.scalablelayout.ScalableLayout>
 
                 <com.ssomai.android.scalablelayout.ScalableLayout
                     android:id="@+id/saveCardInfo2ScalableLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:scale_base_height="78"
-                    app:scale_base_width="1080">
+                    sl:scale_base_height="78"
+                    sl:scale_base_width="1080">
 
-                    <androidx.appcompat.widget.AppCompatCheckBox
+                    <CheckBox
                         android:id="@+id/saveCardCheckBox"
                         style="?android:attr/borderlessButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:button="@drawable/selector_checkbox"
-                        app:scale_height="78"
-                        app:scale_left="70"
-                        app:scale_top="0"
-                        app:scale_width="78" />
+                        sl:scale_height="78"
+                        sl:scale_left="70"
+                        sl:scale_top="0"
+                        sl:scale_width="78"
+                        tools:ignore="MissingPrefix" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <TextView
                         android:id="@+id/saveCardTextView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -410,24 +416,25 @@
                         android:singleLine="true"
                         android:text="@string/save_info"
                         android:textColor="#222222"
-                        app:scale_height="78"
-                        app:scale_left="170"
-                        app:scale_textsize="40"
-                        app:scale_top="0"
-                        app:scale_width="910" />
+                        sl:scale_height="78"
+                        sl:scale_left="170"
+                        sl:scale_textsize="40"
+                        sl:scale_top="0"
+                        sl:scale_width="910"
+                        tools:ignore="MissingPrefix" />
                 </com.ssomai.android.scalablelayout.ScalableLayout>
 
                 <com.ssomai.android.scalablelayout.ScalableLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:scale_base_height="60"
-                    app:scale_base_width="1080" />
+                    sl:scale_base_height="60"
+                    sl:scale_base_width="1080"></com.ssomai.android.scalablelayout.ScalableLayout>
 
                 <com.ssomai.android.scalablelayout.ScalableLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:scale_base_height="144"
-                    app:scale_base_width="1080" />
+                    sl:scale_base_height="144"
+                    sl:scale_base_width="1080"></com.ssomai.android.scalablelayout.ScalableLayout>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
@@ -440,10 +447,10 @@
         <com.ssomai.android.scalablelayout.ScalableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:scale_base_height="168"
-            app:scale_base_width="1080">
+            sl:scale_base_height="168"
+            sl:scale_base_width="1080">
 
-            <androidx.appcompat.widget.AppCompatButton
+            <Button
                 android:id="@+id/submitButton"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
@@ -454,11 +461,12 @@
                 android:text="@string/submit"
                 android:textColor="#ffffff"
                 android:textStyle="bold"
-                app:scale_height="168"
-                app:scale_left="0"
-                app:scale_textsize="60"
-                app:scale_top="0"
-                app:scale_width="1080" />
+                sl:scale_height="168"
+                sl:scale_left="0"
+                sl:scale_textsize="60"
+                sl:scale_top="0"
+                sl:scale_width="1080"
+                tools:ignore="MissingPrefix" />
         </com.ssomai.android.scalablelayout.ScalableLayout>
     </LinearLayout>
 </RelativeLayout>
