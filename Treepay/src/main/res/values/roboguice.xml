@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+    <string-array name="roboguice_modules">
+        <item>kr.co.kcp.treepay.common.roboguice.di.BindingModule</item>
+    </string-array>
+</resources>

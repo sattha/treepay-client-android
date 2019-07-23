@@ -1,0 +1,24 @@
+<resources>
+    <string name="check_out">ยืนยันการสั่งซื้อ</string>
+    <string name="product_name">ชื่อสินค้า</string>
+    <string name="total_amount">ยอดเงินรวม</string>
+    <string name="card_number_hint">หมายเลขบัตร</string>
+    <string name="expiration_hint">วันหมดอายุของบัตร (ดด/ปป)</string>
+    <string name="cvv_hint">CVV / CVC</string>
+    <string name="first_name_hint">ชื่อผู้ถือบัตร</string>
+    <string name="last_name_hint">นามสกุลผู้ถือบัตร</string>
+    <string name="save_info">บันทึกข้อมูลบัตรสำหรับการซื้อครั้งถัดไป</string>
+    <string name="submit">ส่ง</string>
+    <string name="new_card">บัตรใบใหม่</string>
+    <string name="valid_name">กรุณาใส่ชื่อ/นามสกุลผู้ถือบัตร ตามที่ปรากฏบนบัตร</string>
+    <string name="valid_month">กรุณาใส่วันหมดอายุของบัตรที่ถูกต้อง</string>
+    <string name="valid_cvv">กรุณาใส่ CVV/CVC ที่ถูกต้อง</string>
+    <string name="valid_card_number">กรุณาใส่หมายเลขบัตรเครดิตที่ถูกต้อง</string>
+    <string name="confirm_delete">ข้อมูลบัตรที่บันทึกไว้จะถูกลบ</string>
+    <string name="error_title">เกิดข้อผิดพลาด</string>
+    <string name="error">เกิดข้อผิดพลาด กรุณาลองอีกครั้ง</string>
+    <string name="try_again">กรุณาลองอีกครั้ง</string>
+    <string name="ok">ตกลง</string>
+    <string name="cancel">ยกเลิก</string>
+    <string name="invalid_amount">ยอดเงินรวมไม่ถูกต้อง  ระบบสามารถรองรับจำนวนจุดทศนิยมสูงสุด 2 ตำแหน่ง</string>
+</resources>

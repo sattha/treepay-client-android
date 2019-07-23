@@ -1,0 +1,37 @@
+<resources>
+
+    <style name="ProgressWheelDialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="TreepayAppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlNormal">#e6e6e6</item>
+        <item name="colorControlActivated">#e6e6e6</item>
+        <!--<item name="android:textColorHint">#009fe8</item>-->
+    </style>
+
+    <style name="TextAppearance.App.TextInputLayout" parent="@android:style/TextAppearance">
+        <item name="android:textColor">#009fe8</item>
+        <item name="android:textSize">13.3sp</item>
+    </style>
+
+    <style name="TreepayAppTranslucentTheme" parent="@style/TreepayAppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+</resources>

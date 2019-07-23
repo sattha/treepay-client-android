@@ -1,0 +1,24 @@
+<resources>
+    <string name="check_out">Check Out</string>
+    <string name="product_name">Product Name</string>
+    <string name="total_amount">Total Amount</string>
+    <string name="card_number_hint">CARD NUMBER</string>
+    <string name="expiration_hint">EXPIRATION (MM / YY)</string>
+    <string name="cvv_hint">CVV / CVC</string>
+    <string name="first_name_hint">CARDHOLDER FIRST NAME</string>
+    <string name="last_name_hint">LAST NAME</string>
+    <string name="save_info">Save Card information for next purchase.</string>
+    <string name="submit">SUBMIT</string>
+    <string name="new_card">New Card</string>
+    <string name="valid_name">Please enter CARDHOLDER NAME as it appears on the card.</string>
+    <string name="valid_month">Please enter a valid EXPIRATION (MM/YY).</string>
+    <string name="valid_cvv">Please enter a valid CVV/CVC.</string>
+    <string name="valid_card_number">Please enter a valid credit CARD NUMBER.</string>
+    <string name="confirm_delete">Remembered Card information will be deleted.</string>
+    <string name="error_title">Error Message</string>
+    <string name="error">An error has occurred. please try again.</string>
+    <string name="try_again">please try again.</string>
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
+    <string name="invalid_amount">Invalid amount. only accept up to 2 decimal place</string>
+</resources>

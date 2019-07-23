@@ -1,0 +1,7 @@
+<resources>
+    <style name="TreepayAppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimaryDark">#009fe8</item>
+        <item name="colorControlNormal">#e6e6e6</item>
+        <item name="colorControlActivated">#e6e6e6</item>
+    </style>
+</resources>

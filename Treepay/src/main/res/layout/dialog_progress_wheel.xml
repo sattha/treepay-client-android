@@ -1,0 +1,28 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                xmlns:extendview="http://schemas.android.com/apk/res-auto"
+                xmlns:wheel="http://schemas.android.com/apk/res-auto"
+                xmlns:sl="http://schemas.android.com/apk/res-auto"
+                android:gravity="center"
+                android:background="#00000000">
+
+    <com.ssomai.android.scalablelayout.ScalableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        sl:scale_base_width="720"
+        sl:scale_base_height="260">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            sl:scale_left="210"
+            sl:scale_top="0"
+            sl:scale_width="300"
+            sl:scale_height="100"/>
+    </com.ssomai.android.scalablelayout.ScalableLayout>
+
+
+
+</RelativeLayout>
