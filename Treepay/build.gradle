@@ -1,29 +1,19 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-}
-
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-group = 'com.github.treepay1203'
 
 android {
+
     compileSdkVersion 28
+    buildToolsVersion = '28.0.3'
+
     defaultConfig {
+        minSdkVersion 14
         targetSdkVersion 28
         versionCode 1
         versionName "1.0.0"
-        minSdkVersion 14
+
         multiDexEnabled true
         buildConfigField "String", "TREEPAY_SERVER_HOST_DIRECT", "\"https://paytest.treepay.co.th/\""
         buildConfigField "String", "TREEPAY_API_VERSION", "\"1.3\""
-    }
-
-
-    dexOptions {
-        jumboMode = true
-        javaMaxHeapSize "4g"
     }
 
     buildTypes {
@@ -52,11 +42,6 @@ android {
         exclude 'build-data.properties'
     }
 
-    dexOptions {
-        jumboMode = true
-        javaMaxHeapSize "8g"
-    }
-
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES'
         exclude 'META-INF/NOTICE'
@@ -68,24 +53,16 @@ android {
         exclude 'META-INF/license.txt'
         exclude 'LICENSE.txt'
     }
+
     libraryVariants.all { variant ->
         println '****************************'
         println variant.buildType.name
         println '****************************'
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-    }
-}
-
-repositories {
-    flatDir {
-        dirs 'libs'
-    }
-    maven {
-        url 'https://maven.google.com/'
-        name 'Google'
     }
 }
 

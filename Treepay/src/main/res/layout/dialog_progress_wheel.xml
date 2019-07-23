@@ -1,5 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:sl="http://schemas.android.com/apk/res/com.ssomai.android.scalablelayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,18 +10,18 @@
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        sl:scale_base_height="260"
-        sl:scale_base_width="720">
+        app:scale_base_height="260"
+        app:scale_base_width="720">
 
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            sl:scale_height="100"
-            sl:scale_left="210"
-            sl:scale_top="0"
-            sl:scale_width="300" />
+            app:scale_height="100"
+            app:scale_left="210"
+            app:scale_top="0"
+            app:scale_width="300" />
 
     </com.ssomai.android.scalablelayout.ScalableLayout>
 
