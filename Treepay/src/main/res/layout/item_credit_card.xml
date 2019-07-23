@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:sl="http://schemas.android.com/apk/res-auto"
+    xmlns:sl="http://schemas.android.com/apk/res/com.ssomai.android.scalablelayout"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/creditCardItemRelativeLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    tools:ignore="ResAuto">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,8 +26,7 @@
                 sl:scale_height="0.7"
                 sl:scale_left="0"
                 sl:scale_top="0"
-                sl:scale_width="1080"
-                tools:ignore="MissingPrefix" />
+                sl:scale_width="1080" />
         </com.ssomai.android.scalablelayout.ScalableLayout>
 
         <com.ssomai.android.scalablelayout.ScalableLayout
@@ -43,8 +43,7 @@
                 sl:scale_height="90"
                 sl:scale_left="70"
                 sl:scale_top="0"
-                sl:scale_width="138"
-                tools:ignore="MissingPrefix">
+                sl:scale_width="138">
 
                 <ImageView
                     android:id="@+id/cardCompanyImageView"
@@ -66,7 +65,6 @@
                 sl:scale_textsize="50"
                 sl:scale_top="0"
                 sl:scale_width="680"
-                tools:ignore="MissingPrefix"
                 tools:text="****-****-****-1234" />
 
             <ImageView
@@ -77,15 +75,14 @@
                 sl:scale_height="90"
                 sl:scale_left="920"
                 sl:scale_top="0"
-                sl:scale_width="90"
-                tools:ignore="MissingPrefix" />
+                sl:scale_width="90" />
         </com.ssomai.android.scalablelayout.ScalableLayout>
 
         <com.ssomai.android.scalablelayout.ScalableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             sl:scale_base_height="33"
-            sl:scale_base_width="1080"></com.ssomai.android.scalablelayout.ScalableLayout>
+            sl:scale_base_width="1080" />
 
         <com.ssomai.android.scalablelayout.ScalableLayout
             android:layout_width="wrap_content"
@@ -100,8 +97,7 @@
                 sl:scale_height="2"
                 sl:scale_left="0"
                 sl:scale_top="0"
-                sl:scale_width="1080"
-                tools:ignore="MissingPrefix" />
+                sl:scale_width="1080" />
         </com.ssomai.android.scalablelayout.ScalableLayout>
     </LinearLayout>
 </RelativeLayout>
