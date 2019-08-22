@@ -406,15 +406,17 @@ public class TreepayCreditCardActivity extends Activity {
         TreepayAPI treepayAPI = ApiClient.getClient().create(TreepayAPI.class);
 
         GetOttRequest getOttRequest = new GetOttRequest();
-        getOttRequest.setPay_type(SiteInfo.getInstance().getPayType());
-        getOttRequest.setSite_cd(SiteInfo.getInstance().getSiteCd());
-        getOttRequest.setExpiration_mm(expiration.substring(0, 2));
-        getOttRequest.setExpiration_yy(expiration.substring(2, 4));
         getOttRequest.setCard_number(cardNumber);
+        getOttRequest.setExpiration_yy(expiration.substring(2, 4));
+        getOttRequest.setExpiration_mm(expiration.substring(0, 2));
         getOttRequest.setLast_card_holder_name(firstNameEditText.getText().toString());
         getOttRequest.setFirst_card_holder_name(lastNameEditText.getText().toString());
-        getOttRequest.setVer(BuildConfig.TREEPAY_API_VERSION);
+        getOttRequest.setCvn(cvvEditText.getText().toString());
+        getOttRequest.setPay_type(SiteInfo.getInstance().getPayType());
         getOttRequest.setTp_langFlag(LocaleLanguage.getLanguage());
+        getOttRequest.setSite_cd(SiteInfo.getInstance().getSiteCd());
+        getOttRequest.setVer(BuildConfig.TREEPAY_API_VERSION);
+
         if (!saveCardCheckBox.isChecked()) {
             treepayAPI.getCaOtt(getOttRequest)
                     .enqueue(new Callback<GetOttModel>() {

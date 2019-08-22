@@ -89,20 +89,9 @@ public class TreepayActivity extends Activity {
                                 alertDialogBuilder
                                         .setTitle(R.string.error_title)
                                         .setMessage("[" + model.getResCd() + "]" + "\n" + model.getResMsg())
-                                        .setPositiveButton(R.string.ok,
-                                                new DialogInterface.OnClickListener() {
-                                                    public void onClick(
-                                                            DialogInterface dialog, int id) {
-                                                        finish();
-                                                    }
-                                                });
+                                        .setPositiveButton(R.string.ok, (dialog, id) -> finish());
                                 AlertDialog alertDialog = alertDialogBuilder.create();
-                                alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                                    @Override
-                                    public void onDismiss(DialogInterface dialogInterface) {
-                                        finish();
-                                    }
-                                });
+                                alertDialog.setOnDismissListener(dialogInterface -> finish());
                                 alertDialog.show();
                             }
                         } else {
@@ -111,19 +100,10 @@ public class TreepayActivity extends Activity {
                             alertDialogBuilder
                                     .setTitle(R.string.error_title)
                                     .setMessage(getString(R.string.error))
-                                    .setPositiveButton(R.string.ok,
-                                            new DialogInterface.OnClickListener() {
-                                                public void onClick(
-                                                        DialogInterface dialog, int id) {
-                                                }
-                                            });
+                                    .setPositiveButton(R.string.ok, (dialog, id) -> {
+                                    });
                             AlertDialog alertDialog = alertDialogBuilder.create();
-                            alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                                @Override
-                                public void onDismiss(DialogInterface dialogInterface) {
-                                    finish();
-                                }
-                            });
+                            alertDialog.setOnDismissListener(dialogInterface -> finish());
                             alertDialog.show();
                         }
                     }
@@ -136,20 +116,9 @@ public class TreepayActivity extends Activity {
                         alertDialogBuilder
                                 .setTitle(R.string.error_title)
                                 .setMessage(t.getLocalizedMessage() + "\n" + getString(R.string.error))
-                                .setPositiveButton(R.string.ok,
-                                        new DialogInterface.OnClickListener() {
-                                            public void onClick(
-                                                    DialogInterface dialog, int id) {
-                                                finish();
-                                            }
-                                        });
+                                .setPositiveButton(R.string.ok, (dialog, id) -> finish());
                         AlertDialog alertDialog = alertDialogBuilder.create();
-                        alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                            @Override
-                            public void onDismiss(DialogInterface dialogInterface) {
-                                finish();
-                            }
-                        });
+                        alertDialog.setOnDismissListener(dialogInterface -> finish());
                         alertDialog.show();
                     }
                 });

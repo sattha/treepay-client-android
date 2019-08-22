@@ -11,6 +11,7 @@ public class GetOttRequest implements Serializable
     private String card_number;
     private String last_card_holder_name;
     private String first_card_holder_name;
+    private String cvn;
     private String ver;
     private String tp_langFlag;
 
@@ -82,6 +83,14 @@ public class GetOttRequest implements Serializable
     public void setFirst_card_holder_name(String first_card_holder_name)
     {
         this.first_card_holder_name = first_card_holder_name;
+    }
+
+    public String getCvn() {
+        return cvn;
+    }
+
+    public void setCvn(String cvn) {
+        this.cvn = cvn;
     }
 
     public String getVer()
