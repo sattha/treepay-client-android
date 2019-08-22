@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AlertDialog;
+
 import android.view.WindowManager;
 
 import java.io.Serializable;
@@ -24,100 +26,73 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class TreepayActivity extends Activity
-{
+public class TreepayActivity extends Activity {
     ProgressWheelDialog progressWheelDialog;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_treepay);
         progressWheelDialog = new ProgressWheelDialog(this);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        if(ProductInfo.getInstance().getTotalAmount().indexOf(".") > -1)
-        {
-            if(ProductInfo.getInstance().getTotalAmount().length() - ProductInfo.getInstance().getTotalAmount().indexOf(".") > 3)
-            {
+        if (ProductInfo.getInstance().getTotalAmount().indexOf(".") > -1) {
+            if (ProductInfo.getInstance().getTotalAmount().length() - ProductInfo.getInstance().getTotalAmount().indexOf(".") > 3) {
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                         TreepayActivity.this);
                 alertDialogBuilder
                         .setTitle(R.string.error_title)
                         .setMessage(getString(R.string.invalid_amount))
                         .setPositiveButton(R.string.ok,
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(
-                                            DialogInterface dialog, int id) {
-                                        Intent returnIntent = new Intent();
-                                        returnIntent.putExtra("error_msg", getString(R.string.invalid_amount));
-                                        setResult(Activity.RESULT_CANCELED, returnIntent);
-                                        finish();
-                                    }
+                                (dialog, id) -> {
+                                    Intent returnIntent = new Intent();
+                                    returnIntent.putExtra("error_msg", getString(R.string.invalid_amount));
+                                    setResult(Activity.RESULT_CANCELED, returnIntent);
+                                    finish();
                                 });
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
-            }
-            else
-            {
+            } else {
                 cardList();
             }
-        }
-        else
-        {
+        } else {
             cardList();
         }
-
     }
 
-    private void cardList()
-    {
+    private void cardList() {
         progressWheelDialog.show();
         TreepayAPI treepayAPI = ApiClient.getClient().create(TreepayAPI.class);
-
-        SiteInfo.getInstance().setOct3d("N");
-        SiteInfo.getInstance().setOtt3d("N");
-        SiteInfo.getInstance().setOctInit3d("N");
-        SiteInfo.getInstance().setOctYn("N");
 
         CardListRequest cardListRequest = new CardListRequest();
         cardListRequest.setSite_cd(SiteInfo.getInstance().getSiteCd());
         cardListRequest.setUser_id(SiteInfo.getInstance().getUserId());
         cardListRequest.setTp_langFlag(LocaleLanguage.getLanguage());
         treepayAPI.cardList(cardListRequest)
-                .enqueue(new Callback<CardListModel>()
-                {
+                .enqueue(new Callback<CardListModel>() {
                     @Override
-                    public void onResponse(Call<CardListModel> call, Response<CardListModel> response)
-                    {
+                    public void onResponse(Call<CardListModel> call, Response<CardListModel> response) {
                         progressWheelDialog.dismiss();
                         CardListModel model = response.body();
-                        if (model != null)
-                        {
-                            if("0000".equals(model.getResCd()))
-                            {
+                        if (model != null) {
+                            if ("0000".equals(model.getResCd())) {
                                 SiteInfo.getInstance().setOct3d(model.getOct3d());
                                 SiteInfo.getInstance().setOtt3d(model.getOtt3d());
                                 SiteInfo.getInstance().setOctInit3d(model.getOctInit3d());
                                 SiteInfo.getInstance().setOctYn(model.getOctYn());
-                                if(model.getCardCount() > 0 && "Y".equals(model.getOctYn()))
-                                {
+                                if (model.getCardCount() > 0 && "Y".equals(model.getOctYn())) {
                                     Intent intent = new Intent(TreepayActivity.this, TreepayCreditCardListActivity.class);
                                     intent.putExtra("CardVoList", (Serializable) model.getCardlist());
                                     startActivityForResult(intent, CommonInfo.OCT_REQUEST_CODE);
-                                }
-                                else
-                                {
+                                } else {
                                     Intent intent = new Intent(TreepayActivity.this, TreepayCreditCardActivity.class);
                                     startActivityForResult(intent, CommonInfo.OCT_REQUEST_CODE);
                                 }
-                            }
-                            else
-                            {
+                            } else {
                                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                                         TreepayActivity.this);
                                 alertDialogBuilder
                                         .setTitle(R.string.error_title)
-                                        .setMessage("[" + model.getResCd() +"]"+ "\n" + model.getResMsg())
+                                        .setMessage("[" + model.getResCd() + "]" + "\n" + model.getResMsg())
                                         .setPositiveButton(R.string.ok,
                                                 new DialogInterface.OnClickListener() {
                                                     public void onClick(
@@ -126,19 +101,15 @@ public class TreepayActivity extends Activity
                                                     }
                                                 });
                                 AlertDialog alertDialog = alertDialogBuilder.create();
-                                alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener()
-                                {
+                                alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                                     @Override
-                                    public void onDismiss(DialogInterface dialogInterface)
-                                    {
+                                    public void onDismiss(DialogInterface dialogInterface) {
                                         finish();
                                     }
                                 });
                                 alertDialog.show();
                             }
-                        }
-                        else
-                        {
+                        } else {
                             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                                     TreepayActivity.this);
                             alertDialogBuilder
@@ -151,11 +122,9 @@ public class TreepayActivity extends Activity
                                                 }
                                             });
                             AlertDialog alertDialog = alertDialogBuilder.create();
-                            alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener()
-                            {
+                            alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                                 @Override
-                                public void onDismiss(DialogInterface dialogInterface)
-                                {
+                                public void onDismiss(DialogInterface dialogInterface) {
                                     finish();
                                 }
                             });
@@ -164,8 +133,7 @@ public class TreepayActivity extends Activity
                     }
 
                     @Override
-                    public void onFailure(Call<CardListModel> call, Throwable t)
-                    {
+                    public void onFailure(Call<CardListModel> call, Throwable t) {
                         progressWheelDialog.dismiss();
                         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                                 TreepayActivity.this);
@@ -180,11 +148,9 @@ public class TreepayActivity extends Activity
                                             }
                                         });
                         AlertDialog alertDialog = alertDialogBuilder.create();
-                        alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener()
-                        {
+                        alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                             @Override
-                            public void onDismiss(DialogInterface dialogInterface)
-                            {
+                            public void onDismiss(DialogInterface dialogInterface) {
                                 finish();
                             }
                         });
@@ -194,12 +160,9 @@ public class TreepayActivity extends Activity
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        if (requestCode == CommonInfo.OCT_REQUEST_CODE)
-        {
-            if (resultCode == Activity.RESULT_OK)
-            {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CommonInfo.OCT_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra(CommonInfo.OTT, data.getStringExtra(CommonInfo.OTT));
                 returnIntent.putExtra(CommonInfo.OCT, data.getStringExtra(CommonInfo.OCT));
@@ -207,9 +170,7 @@ public class TreepayActivity extends Activity
                 returnIntent.putExtra(CommonInfo.SAVE_CARD, data.getBooleanExtra(CommonInfo.SAVE_CARD, false));
                 setResult(Activity.RESULT_OK, returnIntent);
                 finish();
-            }
-            else
-            {
+            } else {
                 Intent returnIntent = new Intent();
                 setResult(Activity.RESULT_CANCELED, returnIntent);
                 finish();

@@ -12,6 +12,7 @@ public class SiteInfo
     private String ott3d;
     private String oct3d;
     private String octYn;
+    private String payType;
 
     public String getSiteCd()
     {
@@ -71,6 +72,14 @@ public class SiteInfo
     public void setOctYn(String octYn)
     {
         this.octYn = octYn;
+    }
+
+    public String getPayType() {
+        return payType;
+    }
+
+    public void setPayType(String payType) {
+        this.payType = payType;
     }
 
     private static SiteInfo instance = null;
