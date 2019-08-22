@@ -75,10 +75,6 @@ public class TreepayActivity extends Activity {
                         CardListModel model = response.body();
                         if (model != null) {
                             if ("0000".equals(model.getResCd())) {
-                                SiteInfo.getInstance().setOct3d(model.getOct3d());
-                                SiteInfo.getInstance().setOtt3d(model.getOtt3d());
-                                SiteInfo.getInstance().setOctInit3d(model.getOctInit3d());
-                                SiteInfo.getInstance().setOctYn(model.getOctYn());
                                 if (model.getCardCount() > 0 && "Y".equals(model.getOctYn())) {
                                     Intent intent = new Intent(TreepayActivity.this, TreepayCreditCardListActivity.class);
                                     intent.putExtra("CardVoList", (Serializable) model.getCardlist());

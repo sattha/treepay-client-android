@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+
 import androidx.core.widget.NestedScrollView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,8 +40,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TreepayCreditCardListActivity extends Activity
-{
+public class TreepayCreditCardListActivity extends Activity {
     View backView;
     ProgressWheelDialog progressWheelDialog;
     RecyclerView recyclerView;
@@ -63,8 +64,7 @@ public class TreepayCreditCardListActivity extends Activity
     boolean addCancel;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_treepay_credit_card_list);
 
@@ -86,31 +86,21 @@ public class TreepayCreditCardListActivity extends Activity
 
 
         backView = findViewById(R.id.backView);
-        backView.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                finish();
-            }
-        });
+        backView.setOnClickListener(view -> finish());
 
         recyclerView = findViewById(R.id.recyclerView);
-//        recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         cardRecyclerViewAdapter = new CardRecyclerViewAdapter(this, cardlistList);
-        cardRecyclerViewAdapter.setOnItemClickListener(new CommonAdapter.OnItemClickListener<CardListModel.card_list>()
-        {
+        cardRecyclerViewAdapter.setOnItemClickListener(new CommonAdapter.OnItemClickListener<CardListModel.card_list>() {
             @Override
-            public void onItemClick(View view, RecyclerView.ViewHolder holder, CardListModel.card_list cardlist, int position)
-            {
-                if(position != lastPosition)
-                {
+            public void onItemClick(View view, RecyclerView.ViewHolder holder, CardListModel.card_list cardlist, int position) {
+                if (position != lastPosition) {
                     cardlistList.get(lastPosition).setCheck(false);
                     cardlistList.get(position).setCheck(true);
                     cardRecyclerViewAdapter.notifyDataSetChanged();
                     cardNumberTextView.setText("****-****-****" + cardlist.getCard_last_num()
-                            + "(" + cardlist.getExpiration_mmyy().substring(0,2) + " / "+ cardlist.getExpiration_mmyy().substring(2,4) + ")");
+                            + "(" + cardlist.getExpiration_mmyy().substring(0, 2) + " / " + cardlist.getExpiration_mmyy().substring(2, 4) + ")");
 
 
                 }
@@ -118,145 +108,101 @@ public class TreepayCreditCardListActivity extends Activity
             }
 
             @Override
-            public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, CardListModel.card_list cardlist, int position)
-            {
+            public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, CardListModel.card_list cardlist, int position) {
                 return false;
             }
         });
         recyclerView.setAdapter(cardRecyclerViewAdapter);
         progressWheelDialog = new ProgressWheelDialog(this);
 
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener()
-        {
-            @Override
-            public void onRefresh()
-            {
-                cardList();
-            }
-        });
+        swipeRefreshLayout.setOnRefreshListener(() -> cardList());
 
         cardDeleteButton = findViewById(R.id.cardDeleteButton);
-        cardDeleteButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                        TreepayCreditCardListActivity.this);
-                alertDialogBuilder
-                        .setMessage(getString(R.string.confirm_delete))
-                        .setNegativeButton(R.string.cancel, null)
-                        .setPositiveButton(getString(R.string.ok),
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(
-                                            DialogInterface dialog, int id) {
-                                        cardDelete();
-                                    }
-                                });
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
-            }
+        cardDeleteButton.setOnClickListener(view -> {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                    TreepayCreditCardListActivity.this);
+            alertDialogBuilder
+                    .setMessage(getString(R.string.confirm_delete))
+                    .setNegativeButton(R.string.cancel, null)
+                    .setPositiveButton(getString(R.string.ok),
+                            (dialog, id) -> cardDelete());
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
         });
 
         newCardButton = findViewById(R.id.newCardButton);
-        newCardButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Intent intent = new Intent(TreepayCreditCardListActivity.this, TreepayCreditCardActivity.class);
-                startActivityForResult(intent, CommonInfo.OCT_REQUEST_CODE);
-            }
+        newCardButton.setOnClickListener(view -> {
+            Intent intent = new Intent(TreepayCreditCardListActivity.this, TreepayCreditCardActivity.class);
+            startActivityForResult(intent, CommonInfo.OCT_REQUEST_CODE);
         });
 
 
-
         submitButton = findViewById(R.id.submitButton);
-        submitButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                if(cvvEditText.getText().toString().length() < 3)
-                {
-                    scrollViewDown();
-                    cvvEditText.setError(getString(R.string.valid_cvv));
-                    cvvEditText.requestFocus();
-                    return;
-                }
-                if(cardlistList != null)
-                {
-                    Intent returnIntent = new Intent();
-                    returnIntent.putExtra(CommonInfo.OCT, cardlistList.get(lastPosition).getOct());
-                    returnIntent.putExtra(CommonInfo.CVV,cvvEditText.getText().toString());
-                    setResult(RESULT_OK,returnIntent);
-                    finish();
-                }
+        submitButton.setOnClickListener(view -> {
+            if (cvvEditText.getText().toString().length() < 3) {
+                scrollViewDown();
+                cvvEditText.setError(getString(R.string.valid_cvv));
+                cvvEditText.requestFocus();
+                return;
+            }
+            if (cardlistList != null) {
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra(CommonInfo.OCT, cardlistList.get(lastPosition).getOct());
+                returnIntent.putExtra(CommonInfo.CVV, cvvEditText.getText().toString());
+                setResult(RESULT_OK, returnIntent);
+                finish();
             }
         });
     }
 
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
         cardList();
     }
 
     @Override
-    protected void onPause()
-    {
+    protected void onPause() {
         super.onPause();
         refreshTimerStop();
     }
 
-    private void refreshTimerStart()
-    {
+    private void refreshTimerStart() {
         limitTimeHandler.sendEmptyMessage(REFRESH_LIMIT_TIME);
     }
 
-    private void refreshTimerStop()
-    {
+    private void refreshTimerStop() {
         limitTimeHandler.removeMessages(REFRESH_LIMIT_TIME);
     }
 
-    private Handler limitTimeHandler = new Handler()
-    {
+    private Handler limitTimeHandler = new Handler() {
         @Override
-        public void handleMessage(Message msg)
-        {
-            if (msg.what == REFRESH_LIMIT_TIME)
-            {
+        public void handleMessage(Message msg) {
+            if (msg.what == REFRESH_LIMIT_TIME) {
                 calcLimitTime();
             }
         }
     };
 
-    private void calcLimitTime()
-    {
-        if (currentTime > 0)
-        {
+    private void calcLimitTime() {
+        if (currentTime > 0) {
             currentTime--;
-            if (limitTimeHandler != null)
-            {
+            if (limitTimeHandler != null) {
                 limitTimeHandler.sendEmptyMessageDelayed(REFRESH_LIMIT_TIME, 1000);
             }
-        } else
-        {
+        } else {
             cardList();
         }
     }
 
-    private void initCardList()
-    {
+    private void initCardList() {
         cardlistList.get(0).setCheck(true);
         cardNumberTextView.setText("****-****-****" + cardlistList.get(0).getCard_last_num()
-                + "(" + cardlistList.get(0).getExpiration_mmyy().substring(0,2) + " / "+ cardlistList.get(0).getExpiration_mmyy().substring(2,4) + ")");
-        cardlistList.get(cardlistList.size()-1).setLastPosition(true);
+                + "(" + cardlistList.get(0).getExpiration_mmyy().substring(0, 2) + " / " + cardlistList.get(0).getExpiration_mmyy().substring(2, 4) + ")");
+        cardlistList.get(cardlistList.size() - 1).setLastPosition(true);
     }
 
-    private void cardList()
-    {
+    private void cardList() {
         swipeRefreshLayout.setRefreshing(true);
         TreepayAPI treepayAPI = ApiClient.getClient().create(TreepayAPI.class);
 
@@ -264,51 +210,38 @@ public class TreepayCreditCardListActivity extends Activity
         cardListRequest.setSite_cd(SiteInfo.getInstance().getSiteCd());
         cardListRequest.setUser_id(SiteInfo.getInstance().getUserId());
         treepayAPI.cardList(cardListRequest)
-                .enqueue(new Callback<CardListModel>()
-                {
+                .enqueue(new Callback<CardListModel>() {
                     @Override
-                    public void onResponse(Call<CardListModel> call, Response<CardListModel> response)
-                    {
+                    public void onResponse(Call<CardListModel> call, Response<CardListModel> response) {
                         swipeRefreshLayout.setRefreshing(false);
                         CardListModel model = response.body();
-                        if (model != null)
-                        {
-                            if("0000".equals(model.getResCd()))
-                            {
-                                if(model.getCardCount() > 0)
-                                {
+                        if (model != null) {
+                            if ("0000".equals(model.getResCd())) {
+                                if (model.getCardCount() > 0) {
                                     lastPosition = 0;
                                     cardlistList.clear();
                                     cardlistList.addAll(model.getCardlist());
                                     initCardList();
                                     cardRecyclerViewAdapter.notifyDataSetChanged();
-                                    if (model.getAutoRefresh() >= 30)
-                                    {
+                                    if (model.getAutoRefresh() >= 30) {
                                         refreshTimerStop();
                                         currentTime = model.getAutoRefresh();
                                         refreshTimerStart();
                                     }
-                                }
-                                else
-                                {
-                                    if(!addCancel)
-                                    {
+                                } else {
+                                    if (!addCancel) {
                                         Intent intent = new Intent(TreepayCreditCardListActivity.this, TreepayCreditCardActivity.class);
                                         startActivityForResult(intent, CommonInfo.OCT_REQUEST_CODE);
-                                    }
-                                    else
-                                    {
+                                    } else {
                                         finish();
                                     }
                                 }
-                            }
-                            else
-                            {
+                            } else {
                                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                                         TreepayCreditCardListActivity.this);
                                 alertDialogBuilder
                                         .setTitle(R.string.error_title)
-                                        .setMessage("[" + model.getResCd() +"]"+ "\n" + model.getResMsg())
+                                        .setMessage("[" + model.getResCd() + "]" + "\n" + model.getResMsg())
                                         .setPositiveButton(R.string.ok,
                                                 new DialogInterface.OnClickListener() {
                                                     public void onClick(
@@ -318,9 +251,7 @@ public class TreepayCreditCardListActivity extends Activity
                                 AlertDialog alertDialog = alertDialogBuilder.create();
                                 alertDialog.show();
                             }
-                        }
-                        else
-                        {
+                        } else {
                             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                                     TreepayCreditCardListActivity.this);
                             alertDialogBuilder
@@ -338,8 +269,7 @@ public class TreepayCreditCardListActivity extends Activity
                     }
 
                     @Override
-                    public void onFailure(Call<CardListModel> call, Throwable t)
-                    {
+                    public void onFailure(Call<CardListModel> call, Throwable t) {
                         swipeRefreshLayout.setRefreshing(false);
                         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                                 TreepayCreditCardListActivity.this);
@@ -358,8 +288,7 @@ public class TreepayCreditCardListActivity extends Activity
                 });
     }
 
-    private void cardDelete()
-    {
+    private void cardDelete() {
         swipeRefreshLayout.setRefreshing(true);
         TreepayAPI treepayAPI = ApiClient.getClient().create(TreepayAPI.class);
 
@@ -370,27 +299,21 @@ public class TreepayCreditCardListActivity extends Activity
         cardDeleteRequest.setVer(BuildConfig.TREEPAY_API_VERSION);
         cardDeleteRequest.setTp_langFlag(LocaleLanguage.getLanguage());
         treepayAPI.cardDelete(cardDeleteRequest)
-                .enqueue(new Callback<CardDeleteModel>()
-                {
+                .enqueue(new Callback<CardDeleteModel>() {
                     @Override
-                    public void onResponse(Call<CardDeleteModel> call, Response<CardDeleteModel> response)
-                    {
+                    public void onResponse(Call<CardDeleteModel> call, Response<CardDeleteModel> response) {
                         swipeRefreshLayout.setRefreshing(false);
                         CardDeleteModel model = response.body();
-                        if (model != null)
-                        {
-                            if("0000".equals(model.getRes_cd()))
-                            {
+                        if (model != null) {
+                            if ("0000".equals(model.getRes_cd())) {
                                 addCancel = false;
                                 cardList();
-                            }
-                            else
-                            {
+                            } else {
                                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                                         TreepayCreditCardListActivity.this);
                                 alertDialogBuilder
                                         .setTitle(R.string.error_title)
-                                        .setMessage("[" + model.getRes_cd() +"]"+ "\n" + getString(R.string.error))
+                                        .setMessage("[" + model.getRes_cd() + "]" + "\n" + getString(R.string.error))
                                         .setPositiveButton(R.string.ok,
                                                 new DialogInterface.OnClickListener() {
                                                     public void onClick(
@@ -400,9 +323,7 @@ public class TreepayCreditCardListActivity extends Activity
                                 AlertDialog alertDialog = alertDialogBuilder.create();
                                 alertDialog.show();
                             }
-                        }
-                        else
-                        {
+                        } else {
                             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                                     TreepayCreditCardListActivity.this);
                             alertDialogBuilder
@@ -420,8 +341,7 @@ public class TreepayCreditCardListActivity extends Activity
                     }
 
                     @Override
-                    public void onFailure(Call<CardDeleteModel> call, Throwable t)
-                    {
+                    public void onFailure(Call<CardDeleteModel> call, Throwable t) {
                         swipeRefreshLayout.setRefreshing(false);
                         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                                 TreepayCreditCardListActivity.this);
@@ -441,28 +361,22 @@ public class TreepayCreditCardListActivity extends Activity
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        if (requestCode == CommonInfo.OCT_REQUEST_CODE)
-        {
-            if (resultCode == Activity.RESULT_OK)
-            {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CommonInfo.OCT_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra(CommonInfo.OTT, data.getStringExtra(CommonInfo.OTT));
                 returnIntent.putExtra(CommonInfo.CVV, data.getStringExtra(CommonInfo.CVV));
                 returnIntent.putExtra(CommonInfo.SAVE_CARD, data.getBooleanExtra(CommonInfo.SAVE_CARD, false));
                 setResult(Activity.RESULT_OK, returnIntent);
                 finish();
-            }
-            else
-            {
+            } else {
                 addCancel = true;
             }
         }
     }
 
-    private void scrollViewDown()
-    {
+    private void scrollViewDown() {
         View lastChild = mainScrollView.getChildAt(mainScrollView.getChildCount() - 1);
         int bottom = lastChild.getBottom() + mainScrollView.getPaddingBottom();
         int sy = mainScrollView.getScrollY();
